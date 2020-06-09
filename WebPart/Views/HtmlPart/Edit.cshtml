@@ -1,4 +1,4 @@
-﻿@model Parts.Entities.Selection
+﻿@model Parts.Entities.SelectionOfParts
 
 @{
     ViewData["Title"] = "Обновление выборки";
@@ -20,17 +20,17 @@
             <div class="form-group">
                 <label>PartId</label>
                 @{
-                  <input asp-for="Parts" class="form-control" />
+                  <input asp-for="PartId" class="form-control" />
                 }
             </div>
             <div class="form-group">
-                <input type="submit" value="Обновить" class="btn btn-primary" />
+                <input type="submit" value="Добавить деталь" class="btn btn-primary" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Удалить" class="btn btn-primary" />
+                <input type="submit" value="Удалить деталь" class="btn btn-primary" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Обновить" class="btn btn-primary" />
+                <input type="submit" value="Удалить выборку" class="btn btn-primary" />
             </div>
         </form>
     </div>

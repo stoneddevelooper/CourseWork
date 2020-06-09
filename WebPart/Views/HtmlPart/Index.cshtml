@@ -1,69 +1,38 @@
 ﻿@model IEnumerable<Parts.Entities.Selection>
-@using WebPart.Controllers
 
 @{
-    ViewData["Title"] = "Главная - список выборок";
+    ViewData["Title"] = "Список пользовательских выборок";
 }
 
 
-<h1>Главная - список выборок</h1>
+<h1>Список пользовательских выборок</h1>
 
 <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Название
+            </th>
+            <th></th>
+        </tr>
+    </thead>
     <tbody>
-        <tr>
-            <td>
-                <p>Низкий бюджет</p>
-            </td>
-            <td>
-                @{
-                  //  Switch.SetCondition("Low");
-                }
-                <a asp-action="IndexLowParts">Перейти</a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <p>Средний бюджет</p>
-            </td>
-            <td>
-                <a asp-action="IndexAverageParts">Перейти</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p>Высокий бюджет</p>
-            </td>
-            <td>
-                <a asp-action="IndexHighParts">Перейти</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p>Все детали</p>
-            </td>
-            <td>
-                <a asp-action="IndexParts">Перейти</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p>             Пользовательские выборки</p>
-            </td>
-        </tr>
-
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parts)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a>
+                </td>
+            </tr>
         }
-        <tr>
-            <td>
-                <a asp-action="IndexSelection">Перейти</a>
-            </td>
-        </tr>
     </tbody>
 </table>
+<p>
+    <a asp-action="Index">Вернуться к списку</a>
+</p>

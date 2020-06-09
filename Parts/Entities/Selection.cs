@@ -13,8 +13,7 @@ namespace Parts.Entities
         {
             Name = name;
         }
-        public string Name { get; set; }
-        
+        public string Name { get; set; }       
         
         [JsonIgnore]
         public virtual ISet<Part> Parts { get; set; }

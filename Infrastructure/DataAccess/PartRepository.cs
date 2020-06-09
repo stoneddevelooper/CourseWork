@@ -15,14 +15,12 @@ namespace Infrastructure.DataAccess
 
         public override Part Get(int id)
         {
-            return _dbContext.Parts.Include(b => b.Maker)
-                .Include(b => b.Selections).FirstOrDefault(b => b.Id == id);
+            return _dbContext.Parts.Include(b => b.Maker).FirstOrDefault(b => b.Id == id);
         }
 
         public IReadOnlyList<Part> GetAll()
         {
-            return _dbContext.Parts.Include(b => b.Maker)
-                .Include(b => b.Selections).ToList();
+            return _dbContext.Parts.Include(b => b.Maker).ToList();
         }
 
         public IReadOnlyList<Part> GetPartsByName(string name)

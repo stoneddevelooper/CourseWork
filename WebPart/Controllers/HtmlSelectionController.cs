@@ -71,5 +71,9 @@ namespace WebPart.Controllers
                 return View();
             }
         }
+
+        [HttpGet("")]
+
+        [HttpDelete()]
     }
 }

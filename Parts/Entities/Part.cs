@@ -34,8 +34,8 @@ namespace Parts.Entities
         {
 
         }
-
+/*
         [JsonIgnore]
-        public virtual ISet<Selection> Selections { get; set; }
+        public virtual ISet<Selection> Selections { get; set; }*/
     }
 }
