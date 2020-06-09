@@ -1,0 +1,40 @@
+﻿@model Parts.Entities.Selection
+
+@{
+    ViewData["Title"] = "Обновление выборки";
+}
+
+
+<h1>Обновление выборки</h1>
+
+<h4>Выборка</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            @Html.HiddenFor(p => p.Id)
+            <div class="form-group">
+                <label>Название</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>PartId</label>
+                @{
+                  <input asp-for="Parts" class="form-control" />
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Обновить" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Удалить" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Обновить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Вернуться на главную</a>
+</div>

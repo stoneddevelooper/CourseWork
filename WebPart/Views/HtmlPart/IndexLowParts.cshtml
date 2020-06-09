@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Parts.Entities.Part>
+
+@{
+    ViewData["Title"] = "Cписок деталей";
+}
+
+
+<h1>Список деталей</h1>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (item.PriceId.Equals(Parts.Entities.PriceCategory.Low))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Maker.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Index">Вернуться на главную</a>
+</p>
+<p>
+    <a asp-action="CreateSelection">Создать новую выборку</a>
+</p>
