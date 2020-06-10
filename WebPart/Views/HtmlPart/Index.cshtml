@@ -19,20 +19,35 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @foreach (var e in item.Parts)
+            {
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => e.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Parts)
+                    @Html.DisplayFor(modelItem => e.Model)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a>
+                    @Html.DisplayFor(modelItem => e.Maker.Name)
                 </td>
-            </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => e.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => e.Description)
+                </td>
+            }
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 <p>
-    <a asp-action="Index">Вернуться к списку</a>
+    <a asp-action="Create">Создать новую выборку</a>
 </p>

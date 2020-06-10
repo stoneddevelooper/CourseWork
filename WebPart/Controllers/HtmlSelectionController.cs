@@ -72,8 +72,8 @@ namespace WebPart.Controllers
             }
         }
 
-        [HttpGet("")]
+        /*[HttpGet("")]
 
-        [HttpDelete()]
+        [HttpDelete()]*/
     }
 }

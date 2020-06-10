@@ -3,17 +3,16 @@ using System.Collections.Generic;
 
 namespace Parts.Entities
 {
-    public class Selection : AuditableEntity
+    public class Selection : SelectionOfParts
     {
         public Selection()
         {
 
         }
-        public Selection(string name)
+        public Selection(string name) : base(name)
         {
-            Name = name;
+            
         }
-        public string Name { get; set; }       
         
         [JsonIgnore]
         public virtual ISet<Part> Parts { get; set; }

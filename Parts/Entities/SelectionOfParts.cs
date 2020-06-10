@@ -2,10 +2,19 @@
 
 namespace Parts.Entities
 {
-    public class SelectionOfParts
+    public class SelectionOfParts : AuditableEntity
     {
         public int PartsId { get; set; }
-        public int SelectionId { get; set; }
         public string Name { get; set; }
+
+        public SelectionOfParts()
+        {
+
+        }
+
+        public SelectionOfParts(string name)
+        {
+            Name = name;
+        }
     }
 }
