@@ -4,7 +4,7 @@ namespace Parts.Entities
 {
     public class SelectionOfParts : AuditableEntity
     {
-        public int PartsId { get; set; }
+        public int PartId { get; set; }
         public string Name { get; set; }
 
         public SelectionOfParts()

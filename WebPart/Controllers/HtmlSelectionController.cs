@@ -15,6 +15,10 @@ namespace WebPart.Controllers
             _selectionRepository = selectionRepository;
         }
 
+        /*[HttpGet("")]
+
+        [HttpDelete()]*/
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -71,9 +75,5 @@ namespace WebPart.Controllers
                 return View();
             }
         }
-
-        /*[HttpGet("")]
-
-        [HttpDelete()]*/
     }
 }
