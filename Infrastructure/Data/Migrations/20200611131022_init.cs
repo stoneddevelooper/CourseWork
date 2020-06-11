@@ -25,21 +25,6 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Selection",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    ModifiedAt = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Selection", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Parts",
                 columns: table => new
                 {
@@ -53,7 +38,7 @@ namespace Infrastructure.Data.Migrations
                     Model = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
                     PriceId = table.Column<int>(nullable: false),
-                    SelectionId = table.Column<int>(nullable: true)
+                    SelectionPartId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,12 +49,29 @@ namespace Infrastructure.Data.Migrations
                         principalTable: "Makers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Selections",
+                columns: table => new
+                {
+                    PartId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    ModifiedAt = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    PartId1 = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Selections", x => x.PartId);
                     table.ForeignKey(
-                        name: "FK_Parts_Selection_SelectionId",
-                        column: x => x.SelectionId,
-                        principalTable: "Selection",
+                        name: "FK_Selections_Parts_PartId1",
+                        column: x => x.PartId1,
+                        principalTable: "Parts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -78,21 +80,42 @@ namespace Infrastructure.Data.Migrations
                 column: "MakerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Parts_SelectionId",
+                name: "IX_Parts_SelectionPartId",
                 table: "Parts",
-                column: "SelectionId");
+                column: "SelectionPartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Selections_PartId1",
+                table: "Selections",
+                column: "PartId1");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Parts_Selections_SelectionPartId",
+                table: "Parts",
+                column: "SelectionPartId",
+                principalTable: "Selections",
+                principalColumn: "PartId",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Parts");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Parts_Makers_MakerId",
+                table: "Parts");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Parts_Selections_SelectionPartId",
+                table: "Parts");
 
             migrationBuilder.DropTable(
                 name: "Makers");
 
             migrationBuilder.DropTable(
-                name: "Selection");
+                name: "Selections");
+
+            migrationBuilder.DropTable(
+                name: "Parts");
         }
     }
 }

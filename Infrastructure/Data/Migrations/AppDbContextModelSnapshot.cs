@@ -77,21 +77,21 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("PriceId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SelectionId")
+                    b.Property<int?>("SelectionPartId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MakerId");
 
-                    b.HasIndex("SelectionId");
+                    b.HasIndex("SelectionPartId");
 
                     b.ToTable("Parts");
                 });
 
             modelBuilder.Entity("Parts.Entities.Selection", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PartId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -99,15 +99,23 @@ namespace Infrastructure.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("PartId1")
+                        .HasColumnType("int");
 
-                    b.ToTable("Selection");
+                    b.HasKey("PartId");
+
+                    b.HasIndex("PartId1");
+
+                    b.ToTable("Selections");
                 });
 
             modelBuilder.Entity("Parts.Entities.Part", b =>
@@ -120,7 +128,16 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasOne("Parts.Entities.Selection", null)
                         .WithMany("Parts")
-                        .HasForeignKey("SelectionId");
+                        .HasForeignKey("SelectionPartId");
+                });
+
+            modelBuilder.Entity("Parts.Entities.Selection", b =>
+                {
+                    b.HasOne("Parts.Entities.Part", "Part")
+                        .WithMany()
+                        .HasForeignKey("PartId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

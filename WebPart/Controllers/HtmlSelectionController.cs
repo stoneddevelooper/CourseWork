@@ -15,10 +15,6 @@ namespace WebPart.Controllers
             _selectionRepository = selectionRepository;
         }
 
-        /*[HttpGet("")]
-
-        [HttpDelete()]*/
-
         [HttpGet]
         public ActionResult Index()
         {
@@ -75,5 +71,43 @@ namespace WebPart.Controllers
                 return View();
             }
         }
+
+        [HttpGet("remove/{id}")]
+        public ActionResult Delete(int id)
+        {
+            return View(_selectionRepository.Get(id));
+        }
+
+        [HttpDelete("remove/{id}")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, [FromForm] Selection selection)
+        {
+            try
+            {
+                _selectionRepository.Remove(selection);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+ /*       [HttpGet("remove/{id}")]
+        public ActionResult DeletePart(int id)
+        {
+            return View(_selectionRepository.Get(id));
+        }
+        public ActionResult DeletePart(int id, Selection selection)
+        {
+            try
+            {
+               
+            }
+            catch
+            {
+                return View();
+            }
+        }*/
     }
 }

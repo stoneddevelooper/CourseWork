@@ -18,5 +18,8 @@ namespace Parts.Entities
         
         [JsonIgnore]
         public virtual ISet<Part> Parts { get; set; }
+        //public List<PartInSelection> PartInSelelections { get; set; }
+        public int PartId { get; set; }
+        public Part Part { get; set; }
     }
 }
