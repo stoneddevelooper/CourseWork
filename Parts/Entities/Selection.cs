@@ -11,14 +11,15 @@ namespace Parts.Entities
         }
 
         public string Name { get; set; }
-        public Selection(string name)
+        public Selection(string name, int partId)
         {
             Name = name;
+            PartId = partId;
         }
         
         [JsonIgnore]
         public virtual ISet<Part> Parts { get; set; }
-        //public List<PartInSelection> PartInSelelections { get; set; }
+        public List<PartInSelection> PartInSelelections { get; set; }
         public int PartId { get; set; }
         public Part Part { get; set; }
     }

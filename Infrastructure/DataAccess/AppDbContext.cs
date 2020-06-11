@@ -16,8 +16,7 @@ namespace Infrastructure.DataAccess
         public DbSet<Selection> Selections { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<PartInSelection>().HasKey(cs => new { cs.PartId, cs.SelectionId });
-            modelBuilder.Entity<Selection>().HasKey(cs => new { cs.PartId });
+            modelBuilder.Entity<PartInSelection>().HasKey(cs => new { cs.PartId, cs.SelectionId });
         }
     }
 }

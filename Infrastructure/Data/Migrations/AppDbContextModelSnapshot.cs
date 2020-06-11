@@ -77,21 +77,36 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("PriceId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SelectionPartId")
+                    b.Property<int?>("SelectionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MakerId");
 
-                    b.HasIndex("SelectionPartId");
+                    b.HasIndex("SelectionId");
 
                     b.ToTable("Parts");
                 });
 
-            modelBuilder.Entity("Parts.Entities.Selection", b =>
+            modelBuilder.Entity("Parts.Entities.PartInSelection", b =>
                 {
                     b.Property<int>("PartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SelectionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PartId", "SelectionId");
+
+                    b.HasIndex("SelectionId");
+
+                    b.ToTable("PartInSelection");
+                });
+
+            modelBuilder.Entity("Parts.Entities.Selection", b =>
+                {
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -99,21 +114,18 @@ namespace Infrastructure.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PartId1")
+                    b.Property<int>("PartId")
                         .HasColumnType("int");
 
-                    b.HasKey("PartId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("PartId1");
+                    b.HasIndex("PartId");
 
                     b.ToTable("Selections");
                 });
@@ -128,14 +140,29 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasOne("Parts.Entities.Selection", null)
                         .WithMany("Parts")
-                        .HasForeignKey("SelectionPartId");
+                        .HasForeignKey("SelectionId");
+                });
+
+            modelBuilder.Entity("Parts.Entities.PartInSelection", b =>
+                {
+                    b.HasOne("Parts.Entities.Part", "Part")
+                        .WithMany("PartInSelelections")
+                        .HasForeignKey("PartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Parts.Entities.Selection", "Selection")
+                        .WithMany("PartInSelelections")
+                        .HasForeignKey("SelectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Parts.Entities.Selection", b =>
                 {
                     b.HasOne("Parts.Entities.Part", "Part")
                         .WithMany()
-                        .HasForeignKey("PartId1")
+                        .HasForeignKey("PartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

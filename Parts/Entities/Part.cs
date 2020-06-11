@@ -34,9 +34,9 @@ namespace Parts.Entities
         {
 
         }
-        /*
-                [JsonIgnore]
-                public virtual ISet<Selection> Selections { get; set; }*/
-        //public List<PartInSelection> PartInSelelections { get; set; }
+        
+        /*[JsonIgnore]
+        public virtual ISet<Selection> Selections { get; set; }*/
+        public List<PartInSelection> PartInSelelections { get; set; }
     }
 }
