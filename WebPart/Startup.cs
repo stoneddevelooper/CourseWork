@@ -29,7 +29,6 @@ namespace WebPart
 
 
 
-            services.AddScoped<IPartRepository, PartRepository>();
             services.AddScoped<ISelectionRepository, SelectionRepository>();
 
             services.AddDbContext<AppDbContext>(options =>

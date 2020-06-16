@@ -22,31 +22,23 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            @foreach (var e in item.Parts)
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => e.Name)
+                @foreach (var e in item.PartInSelelections)
+                 {
+                        @Html.DisplayFor(modelItem => e.Part.Name)
+                        @Html.DisplayFor(modelItem => e.Part.Name)
+                        @Html.DisplayFor(modelItem => e.Part.Model)
+                        @Html.DisplayFor(modelItem => e.Part.Maker.Name)
+                        @Html.DisplayFor(modelItem => e.Part.Price)
+                        @Html.DisplayFor(modelItem => e.Part.Description)
+                            
+                 }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => e.Model)
+                   <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => e.Maker.Name)
+                   <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => e.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => e.Description)
-                </td>
-            }
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a>
-            </td>
-            <td>
-                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-            </td>
         </tr>
         }
     </tbody>

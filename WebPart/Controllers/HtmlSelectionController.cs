@@ -2,6 +2,7 @@
 using Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+//using AspNetCore;
 
 namespace WebPart.Controllers
 {
@@ -41,8 +42,9 @@ namespace WebPart.Controllers
             try
             {
                 _selectionRepository.Add(selection);
+                
 
-                return RedirectToAction(nameof(Index));
+                return View();
             }
             catch
             {
@@ -92,22 +94,5 @@ namespace WebPart.Controllers
                 return View();
             }
         }
-
- /*       [HttpGet("remove/{id}")]
-        public ActionResult DeletePart(int id)
-        {
-            return View(_selectionRepository.Get(id));
-        }
-        public ActionResult DeletePart(int id, Selection selection)
-        {
-            try
-            {
-               
-            }
-            catch
-            {
-                return View();
-            }
-        }*/
     }
 }

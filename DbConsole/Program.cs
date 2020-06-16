@@ -34,11 +34,14 @@ namespace DbConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Start");
-            //Maker maker = new Maker("Intel", "USA", "Intel Corp.");
-            //_makerRepository.Add(maker);
-            //Part part = new Part(1, "Core I7 - 9700K OEM", 25_850.0, "CPU", "LGA 1151-v2, 8 x 3600 ÌÃצ, L2 - 2 ÌÁ, L3 - 12 Ìב, 2ץDDR4-2666 ÌÃצ, Intel UHD Graphics 630, TDP 95 Âע");
-            Part part = new Part(1, "Intel 545s Series", 7_599.0, "SSD", "512 ÃÁ, SATA III, TLC 3D NAND, 500 Ìבאיע / סוך");
+            Maker maker = new Maker("Intel", "USA", "Intel Corp.");
+            _makerRepository.Add(maker);
+            Part part = new Part(1, "Core I7 - 9700K OEM", 25_850.0, "CPU", "LGA 1151-v2, 8 x 3600 ÌÃצ, L2 - 2 ÌÁ, L3 - 12 Ìב, 2ץDDR4-2666 ÌÃצ, Intel UHD Graphics 630, TDP 95 Âע");
             _partRepository.Add(part);
+            Part part_1 = new Part(1, "Intel 545s Series", 7_599.0, "SSD", "512 ÃÁ, SATA III, TLC 3D NAND, 500 Ìבאיע / סוך");
+            _partRepository.Add(part_1);
+            Selection selection = new Selection("High qiality");
+            _selectionRepository.Add(selection);
         }
     }
 }

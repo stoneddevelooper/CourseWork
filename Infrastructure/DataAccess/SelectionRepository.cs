@@ -14,11 +14,11 @@ namespace Infrastructure.DataAccess
         }
         public override Selection Get(int id)
         {
-            return _dbContext.Selections.Include(b => b.Parts).FirstOrDefault(b => b.Id == id);
+            return _dbContext.Selections.FirstOrDefault(b => b.Id == id);
         }
         public IReadOnlyList<Selection> GetAllSets()
         {
-            return _dbContext.Selections.Include(b => b.Parts).ToList();
+            return _dbContext.Selections.ToList();
         }
 
         public IReadOnlyList<Selection> GetSetByName(string name)

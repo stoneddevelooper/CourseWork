@@ -1,4 +1,4 @@
-﻿@model Parts.Entities.Selection
+﻿@model Parts.Entities.PartInSelection
 
 @{
     ViewData["Title"] = "Создание новой выборки";
@@ -12,13 +12,11 @@
         <form asp-action="Create">
             <div class="form-group">
                 <label>Название</label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Selection.Name" class="form-control" />
             </div>
             <div class="form-group">
-                <label>PartsId</label>
-                @{ 
-                    <input asp-for="PartId" class="form-control" />
-                  }
+                <label>PartId</label>
+                <input asp-for="PartId" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Создать" class="btn btn-primary" />
