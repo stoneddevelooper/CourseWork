@@ -40,8 +40,8 @@ namespace DbConsole
             _partRepository.Add(part);
             Part part_1 = new Part(1, "Intel 545s Series", 7_599.0, "SSD", "512 ֱֳ, SATA III, TLC 3D NAND, 500 ּבאיע / סוך");
             _partRepository.Add(part_1);
-            Selection selection = new Selection("High qiality");
-            _selectionRepository.Add(selection);
+/*            Selection selection = new Selection("High qiality");
+            _selectionRepository.Add(selection);*/
         }
     }
 }

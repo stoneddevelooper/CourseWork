@@ -32,7 +32,7 @@ namespace Parts.Entities
         }
         public Part()
         {
-
+            PartInSelelections = new List<PartInSelection>();
         }
         
         /*[JsonIgnore]

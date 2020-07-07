@@ -7,10 +7,11 @@ namespace Parts.Entities
     {
         public Selection()
         {
-
+            PartInSelelections = new List<PartInSelection>();
         }
 
         public string Name { get; set; }
+        public int PartId { get; set; }
         public Selection(string name)
         {
             Name = name;

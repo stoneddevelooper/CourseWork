@@ -2,7 +2,10 @@
 using Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-//using AspNetCore;
+using System.Collections.Generic;
+using System;
+using System.Security.Cryptography.X509Certificates;
+using System.Linq;
 
 namespace WebPart.Controllers
 {
@@ -11,7 +14,7 @@ namespace WebPart.Controllers
     {
         private ISelectionRepository _selectionRepository { get; set; }
 
-        public HtmlSelectionController(ISelectionRepository selectionRepository)
+    public HtmlSelectionController(ISelectionRepository selectionRepository)
         {
             _selectionRepository = selectionRepository;
         }
@@ -41,10 +44,10 @@ namespace WebPart.Controllers
         {
             try
             {
+                selection.PartInSelelections.Add(new PartInSelection { SelectionId = selection.Id, PartId = selection.PartId });
                 _selectionRepository.Add(selection);
-                
 
-                return View();
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -64,6 +67,7 @@ namespace WebPart.Controllers
         {
             try
             {
+                selection.PartInSelelections.Find(b => b.SelectionId == selection.Id).PartId = selection.PartId;
                 _selectionRepository.Update(selection);
 
                 return RedirectToAction(nameof(Index));
