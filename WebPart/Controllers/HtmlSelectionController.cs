@@ -67,8 +67,19 @@ namespace WebPart.Controllers
         {
             try
             {
-                selection.PartInSelelections.Find(b => b.SelectionId == selection.Id).PartId = selection.PartId;
                 _selectionRepository.Update(selection);
+                //selection.PartInSelelections.Find(b => b.SelectionId == selection.Id).PartId = selection.PartId;
+                /*                using (AppDbContext app = new AppDbContext())
+                                {
+                                    PartInSelection pis = app.Selections.Find(id).PartInSelelections.Find(b => b.SelectionId == selection.Id);
+                                    pis.PartId = selection.PartId;
+                                    app.SaveChanges();
+                                }*/
+
+
+
+
+                //не обновляет PartInSelection
 
                 return RedirectToAction(nameof(Index));
             }
@@ -90,6 +101,7 @@ namespace WebPart.Controllers
         {
             try
             {
+                //не удаляет
                 _selectionRepository.Remove(selection);
                 return RedirectToAction(nameof(Index));
             }

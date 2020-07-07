@@ -22,25 +22,18 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-                @try
-                {
-                    foreach (var e in item.PartInSelelections)
-                    {
-                        @e.Part.Name
+            </td>
+            <td>
+                @foreach (var e in item.PartInSelelections)
+                    { //не выводит
+                        @Html.DisplayFor(item => e.Part.Name)
                         @e.Part.Model
                         @e.Part.Maker.Name
                         @e.Part.Price
                         @e.Part.Description
                     }
-                 }
-                 catch
-                 {
-                    
-                 }
 
-
-                }
-                </td>
+            </td>
                 <td>
                    <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a>
                 </td>

@@ -15,7 +15,7 @@
             @Html.HiddenFor(p => p.Id)
             <div class="form-group">
                 <label>Название</label>
-                <input asp-for="Name" class="form-control" />
+                <p>@Html.DisplayFor(p => p.Name)</p>
             </div>
             <div class="form-group">
                 <input type="submit" value="Удалить" class="btn btn-primary" />
