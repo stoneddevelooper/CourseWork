@@ -26,13 +26,6 @@ namespace WebPart.Controllers
             return View(_selectionRepository.GetAllSets());
         }
 
-
-        [HttpGet("{id}")]
-        public ActionResult Details(int id)
-        {
-            return View(_selectionRepository.Get(id));
-        }
-
         [HttpGet("create")]
         public ActionResult Create()
         {

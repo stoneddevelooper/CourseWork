@@ -1,0 +1,41 @@
+﻿@model Parts.Entities.Part
+
+@{
+    ViewData["Title"] = "Добавление новой детали";
+}
+
+<h1>Добавление новой детали</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label>Название</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>MakerId</label>
+                <input asp-for="MakerId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Model</label>
+                <input asp-for="Model" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input asp-for="Price" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Вернуться к списку</a>
+</div>

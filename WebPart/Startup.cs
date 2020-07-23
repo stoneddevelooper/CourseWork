@@ -30,6 +30,7 @@ namespace WebPart
 
 
             services.AddScoped<ISelectionRepository, SelectionRepository>();
+            services.AddScoped<IPartRepository, PartRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MsSqlConnection")));

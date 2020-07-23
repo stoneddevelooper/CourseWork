@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Parts.Entities.Part>
+
+@{
+    ViewData["Title"] = "Список деталей";
+}
+
+
+<h1>Список деталей</h1>
+
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <p>Деталь - @item.Name</p>
+                <p>Модель - @item.Model</p>
+                <p>Производитель - @item.Maker.Name</p>
+                <p>Цена - @item.Price</p>
+                <p>Описание - @item.Description</p>
+            </td>
+                <td>
+                   <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a>
+                </td>
+                <td>
+                   <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create">Добавить новую деталь</a>
+</p>
