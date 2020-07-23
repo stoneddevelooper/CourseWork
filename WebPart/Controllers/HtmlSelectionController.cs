@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace WebPart.Controllers
 {
@@ -71,15 +72,15 @@ namespace WebPart.Controllers
                 //selection.PartInSelelections.Find(b => b.SelectionId == selection.Id).PartId = selection.PartId;
                 /*                using (AppDbContext app = new AppDbContext())
                                 {
-                                    PartInSelection pis = app.Selections.Find(id).PartInSelelections.Find(b => b.SelectionId == selection.Id);
+                                     List<PartInSelection> pIs = selection.PartInSelelections.FindAll(e => e.SelectionId == selection.Id);
+
+                foreach (var e in pIs)
+                {
+                    selection.PartInSelelections.Remove(e);
+                }
                                     pis.PartId = selection.PartId;
                                     app.SaveChanges();
                                 }*/
-
-
-
-
-                //не обновляет PartInSelection
 
                 return RedirectToAction(nameof(Index));
             }
@@ -95,13 +96,23 @@ namespace WebPart.Controllers
             return View(_selectionRepository.Get(id));
         }
 
-        [HttpDelete("remove/{id}")]
+        [HttpPost("remove/{id}"), ActionName("Delete")]
+        //[HttpDelete("remove/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, [FromForm] Selection selection)
+        public ActionResult DeleteConfirmed(int id, [FromForm] Selection selection)
         {
             try
-            {
-                //не удаляет
+            {/*
+                using AppDbContext db = new AppDbContext();
+                Selection selection = db.Selections.Find(id);*/
+/*                List<PartInSelection> pIs = selection.PartInSelelections.FindAll(e => e.SelectionId == selection.Id);
+
+                foreach (var e in pIs)
+                {
+                    selection.PartInSelelections.Remove(e);
+                }*/
+                //db.Selections.Remove(selection);
+
                 _selectionRepository.Remove(selection);
                 return RedirectToAction(nameof(Index));
             }

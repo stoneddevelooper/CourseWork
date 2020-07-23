@@ -24,14 +24,14 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @foreach (var e in item.PartInSelelections)
-                    { //не выводит
-                        @Html.DisplayFor(item => e.Part.Name)
-                        @e.Part.Model
-                        @e.Part.Maker.Name
-                        @e.Part.Price
-                        @e.Part.Description
-                    }
+                @foreach (var modelItem in item.PartInSelelections)
+                {
+        <p>Деталь - @modelItem.Part.Name</p>
+        <p>Модель - @modelItem.Part.Model</p>
+        <p>Производитель - @modelItem.Part.Maker.Name</p>
+        <p>Цена - @modelItem.Part.Price</p>
+        <p>Описание - @modelItem.Part.Description</p>
+                }
 
             </td>
                 <td>

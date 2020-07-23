@@ -14,16 +14,16 @@ namespace Infrastructure.DataAccess
         }
         public override Selection Get(int id)
         {
-            return _dbContext.Selections.FirstOrDefault(b => b.Id == id);
+            return _dbContext.Selections.Include(b => b.PartInSelelections).FirstOrDefault(b => b.Id == id);
         }
         public IReadOnlyList<Selection> GetAllSets()
         {
-            return _dbContext.Selections.ToList();
+            return _dbContext.Selections.Include(b => b.PartInSelelections).ToList();
         }
 
         public IReadOnlyList<Selection> GetSetByName(string name)
         {
-            return _dbContext.Selections.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
+            return _dbContext.Selections.Where(x => x.Name.ToLower().Contains(name.ToLower())).Include(x => x.PartInSelelections).ToList();
         }
     }
 }

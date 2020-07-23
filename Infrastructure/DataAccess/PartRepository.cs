@@ -15,7 +15,8 @@ namespace Infrastructure.DataAccess
 
         public override Part Get(int id)
         {
-            return _dbContext.Parts.Include(b => b.Maker).FirstOrDefault(b => b.Id == id);
+            return _dbContext.Parts.Include(b => b.Maker)
+                .FirstOrDefault(b => b.Id == id);
         }
 
         public IReadOnlyList<Part> GetAll()
